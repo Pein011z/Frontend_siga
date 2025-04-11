@@ -10,6 +10,21 @@ const CrudAdministrativo = () => {
     nombre: "",
     apellido: "",
   });
+  const [mensaje, setMensaje] = useState("");
+
+  const mostrarMensaje = (texto) => {
+    setMensaje(texto);
+    setTimeout(() => {
+      const mensajeDiv = document.querySelector(".mensaje-exito");
+      if (mensajeDiv) {
+        mensajeDiv.classList.add("oculto");
+      }
+    }, 2500);
+
+    setTimeout(() => {
+      setMensaje("");
+    }, 3000);
+  };
 
   const [editandoId, setEditandoId] = useState(null);
 
@@ -42,6 +57,7 @@ const CrudAdministrativo = () => {
       setNuevoAdministrativo({ usuario_id: "", nombre: "", apellido: "" });
       obtenerAdministrativos();
       obtenerUsuariosDisponibles();
+      mostrarMensaje("✅ Administrador registrado con éxito");
     } catch (error) {
       console.error("Error al registrar administrativo:", error);
     }
@@ -53,6 +69,7 @@ const CrudAdministrativo = () => {
       setNuevoAdministrativo({ usuario_id: "", nombre: "", apellido: "" });
       setEditandoId(null);
       obtenerAdministrativos();
+      mostrarMensaje("✏️ Administrador actualizado correctamente");
     } catch (error) {
       console.error("Error al actualizar administrativo:", error);
     }
@@ -63,6 +80,7 @@ const CrudAdministrativo = () => {
       await axios.delete(`http://localhost:8000/api/administrativos/${id}`);
       obtenerAdministrativos();
       obtenerUsuariosDisponibles();
+      mostrarMensaje("🗑️ Administrador eliminado");
     } catch (error) {
       console.error("Error al eliminar administrativo:", error);
     }
@@ -82,73 +100,76 @@ const CrudAdministrativo = () => {
   };
 
   return (
-    <div className="administrativo-container">
-      <h2>Gestión de Administrativos</h2>
-      <div className="administrativo-form">
-        <select
-          name="usuario_id"
-          value={nuevoAdministrativo.usuario_id}
-          onChange={handleChange}
-          disabled={editandoId !== null}
-        >
-          <option value="">Selecciona un usuario</option>
-          {usuariosDisponibles.map((usuario) => (
-            <option key={usuario.id} value={usuario.id}>
-              {usuario.id} - {usuario.correo}
-            </option>
-          ))}
-        </select>
-        <input
-          type="text"
-          name="nombre"
-          placeholder="Nombre"
-          value={nuevoAdministrativo.nombre}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="apellido"
-          placeholder="Apellido"
-          value={nuevoAdministrativo.apellido}
-          onChange={handleChange}
-        />
-        <button onClick={editandoId ? () => actualizarAdministrativo(editandoId) : registrarAdministrativo}>
-          {editandoId ? "Actualizar" : "Registrar"}
-        </button>
-      </div>
-
-      <div className="administrativo-table-container">
-        <table className="administrativo-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Usuario ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {administrativos.map((administrativo) => (
-              <tr key={administrativo.id}>
-                <td>{administrativo.id}</td>
-                <td>{administrativo.usuario_id}</td>
-                <td>{administrativo.nombre}</td>
-                <td>{administrativo.apellido}</td>
-                <td>
-                  <button className="edit-btn" onClick={() => comenzarEdicion(administrativo)}>
-                    Editar
-                  </button>
-                  <button className="delete-btn" onClick={() => eliminarAdministrativo(administrativo.id)}>
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
+    <>
+      {mensaje && <div className="mensaje-exito">{mensaje}</div>}
+      <div className="administrativo-container">
+        <h2>Gestión de Administrativos</h2>
+        <div className="administrativo-form">
+          <select
+            name="usuario_id"
+            value={nuevoAdministrativo.usuario_id}
+            onChange={handleChange}
+            disabled={editandoId !== null}
+          >
+            <option value="">Selecciona un usuario</option>
+            {usuariosDisponibles.map((usuario) => (
+              <option key={usuario.id} value={usuario.id}>
+                {usuario.id} - {usuario.correo}
+              </option>
             ))}
-          </tbody>
-        </table>
+          </select>
+          <input
+            type="text"
+            name="nombre"
+            placeholder="Nombre"
+            value={nuevoAdministrativo.nombre}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="apellido"
+            placeholder="Apellido"
+            value={nuevoAdministrativo.apellido}
+            onChange={handleChange}
+          />
+          <button onClick={editandoId ? () => actualizarAdministrativo(editandoId) : registrarAdministrativo}>
+            {editandoId ? "Actualizar" : "Registrar"}
+          </button>
+        </div>
+
+        <div className="administrativo-table-container">
+          <table className="administrativo-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {administrativos.map((administrativo) => (
+                <tr key={administrativo.id}>
+                  <td>{administrativo.id}</td>
+                  <td>{administrativo.usuario_id}</td>
+                  <td>{administrativo.nombre}</td>
+                  <td>{administrativo.apellido}</td>
+                  <td>
+                    <button className="edit-btn" onClick={() => comenzarEdicion(administrativo)}>
+                      Editar
+                    </button>
+                    <button className="delete-btn" onClick={() => eliminarAdministrativo(administrativo.id)}>
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
