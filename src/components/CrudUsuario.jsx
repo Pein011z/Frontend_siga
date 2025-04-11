@@ -82,7 +82,7 @@ function CrudUsuario() {
   const eliminar = async (id) => {
     await axios.delete(`${apiUrl}/eliminar-usuario/${id}`);
     obtenerUsuarios();
-    mostrarMensaje("🗑️ Usuario eliminado");
+    mostrarMensaje("🗑️ Usuario eliminado"); 
   };
 
   const seleccionar = (usuario) => {
