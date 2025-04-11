@@ -105,74 +105,74 @@ const CrudDocente = () => {
     <>
       {mensaje && <div className="mensaje-exito">{mensaje}</div>}
 
-
-      <div className="acudiente-container">
-        <h2>Gestión de Docentes</h2>
-        <div className="acudiente-form">
-          <select
-            name="usuario_id"
-            value={nuevoDocente.usuario_id}
-            onChange={handleChange}
-            disabled={editandoId !== null}
-          >
-            <option value="">Selecciona un usuario</option>
-            {usuariosDisponibles.map((usuario) => (
-              <option key={usuario.id} value={usuario.id}>
-                {usuario.id} - {usuario.correo}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            value={nuevoDocente.nombre}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="apellido"
-            placeholder="Apellido"
-            value={nuevoDocente.apellido}
-            onChange={handleChange}
-          />
-          <button onClick={editandoId ? () => actualizarDocente(editandoId) : registrarDocente}>
-            {editandoId ? "Actualizar" : "Registrar"}
-          </button>
-        </div>
-
-        <div className="acudiente-table-container">
-          <table className="acudiente-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Usuario ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {docentes.map((docente) => (
-                <tr key={docente.id}>
-                  <td>{docente.id}</td>
-                  <td>{docente.usuario_id}</td>
-                  <td>{docente.nombre}</td>
-                  <td>{docente.apellido}</td>
-                  <td>
-                    <button className="edit-btn" onClick={() => comenzarEdicion(docente)}>
-                      Editar
-                    </button>
-                    <button className="delete-btn" onClick={() => eliminarDocente(docente.id)}>
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    
+    <div className="acudiente-container">
+      <h2>Gestión de Docentes</h2>
+      <div className="acudiente-form">
+        <select
+          name="usuario_id"
+          value={nuevoDocente.usuario_id}
+          onChange={handleChange}
+          disabled={editandoId !== null}
+        >
+          <option value="">Selecciona un usuario</option>
+          {usuariosDisponibles.map((usuario) => (
+            <option key={usuario.id} value={usuario.id}>
+              {usuario.id} - {usuario.correo}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Nombre"
+          value={nuevoDocente.nombre}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="apellido"
+          placeholder="Apellido"
+          value={nuevoDocente.apellido}
+          onChange={handleChange}
+        />
+        <button onClick={editandoId ? () => actualizarDocente(editandoId) : registrarDocente}>
+          {editandoId ? "Actualizar" : "Registrar"}
+        </button>
       </div>
+
+      <div className="acudiente-table-container">
+        <table className="acudiente-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Usuario ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {docentes.map((docente) => (
+              <tr key={docente.id}>
+                <td>{docente.id}</td>
+                <td>{docente.usuario_id}</td>
+                <td>{docente.nombre}</td>
+                <td>{docente.apellido}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => comenzarEdicion(docente)}>
+                    Editar
+                  </button>
+                  <button className="delete-btn" onClick={() => eliminarDocente(docente.id)}>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
     </>
   );
 };

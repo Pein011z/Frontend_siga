@@ -88,65 +88,65 @@ function CrudEstudiante() {
   return (
     <>
       {mensaje && <div className="mensaje-exito">{mensaje}</div>}
+    
+    <div className="estudiante-container">
+      <h2>{editId ? "Editar Estudiante" : "Registrar Estudiante"}</h2>
+      <div className="estudiante-form">
+        <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} />
+        <input type="text" name="apellido" placeholder="Apellido" value={formData.apellido} onChange={handleChange} />
 
-      <div className="estudiante-container">
-        <h2>{editId ? "Editar Estudiante" : "Registrar Estudiante"}</h2>
-        <div className="estudiante-form">
-          <input type="text" name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} />
-          <input type="text" name="apellido" placeholder="Apellido" value={formData.apellido} onChange={handleChange} />
+        <select name="acudiente_id" value={formData.acudiente_id} onChange={handleChange}>
+          <option value="">Selecciona un acudiente</option>
+          {acudientes.map((a) => (
+            <option key={a.id} value={a.id}>{a.nombre} {a.apellido}</option>
+          ))}
+        </select>
 
-          <select name="acudiente_id" value={formData.acudiente_id} onChange={handleChange}>
-            <option value="">Selecciona un acudiente</option>
-            {acudientes.map((a) => (
-              <option key={a.id} value={a.id}>{a.nombre} {a.apellido}</option>
-            ))}
-          </select>
+        <select name="curso_id" value={formData.curso_id} onChange={handleChange}>
+          <option value="">Selecciona un curso</option>
+          {cursos.map((c) => (
+            <option key={c.id} value={c.id}>{c.nombre}</option>
+          ))}
+        </select>
 
-          <select name="curso_id" value={formData.curso_id} onChange={handleChange}>
-            <option value="">Selecciona un curso</option>
-            {cursos.map((c) => (
-              <option key={c.id} value={c.id}>{c.nombre}</option>
-            ))}
-          </select>
-
-          <button onClick={editId ? actualizarEstudiante : registrarEstudiante}>
-            {editId ? "Actualizar" : "Registrar"}
-          </button>
-        </div>
-
-        <div className="estudiante-table-container">
-          <table className="estudiante-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Acudiente</th>
-                <th>Curso</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {estudiantes.map((e) => (
-                <tr key={e.id}>
-                  <td>{e.id}</td>
-                  <td>{e.nombre}</td>
-                  <td>{e.apellido}</td>
-                  <td>{acudientes.find((a) => a.id === e.acudiente_id)?.nombre || ""}</td>
-                  <td>{cursos.find((c) => c.id === e.curso_id)?.nombre || ""}</td>
-                  <td>
-                    <button className="edit-btn" onClick={() => editarEstudiante(e)}>Editar</button>
-                    <button className="delete-btn" onClick={() => eliminarEstudiante(e.id)}>Eliminar</button>
-                  </td>
-                </tr>
-              ))}
-              {estudiantes.length === 0 && (
-                <tr><td colSpan="6">No hay estudiantes registrados.</td></tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+        <button onClick={editId ? actualizarEstudiante : registrarEstudiante}>
+          {editId ? "Actualizar" : "Registrar"}
+        </button>
       </div>
+
+      <div className="estudiante-table-container">
+        <table className="estudiante-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Acudiente</th>
+              <th>Curso</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {estudiantes.map((e) => (
+              <tr key={e.id}>
+                <td>{e.id}</td>
+                <td>{e.nombre}</td>
+                <td>{e.apellido}</td>
+                <td>{acudientes.find((a) => a.id === e.acudiente_id)?.nombre || ""}</td>
+                <td>{cursos.find((c) => c.id === e.curso_id)?.nombre || ""}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => editarEstudiante(e)}>Editar</button>
+                  <button className="delete-btn" onClick={() => eliminarEstudiante(e.id)}>Eliminar</button>
+                </td>
+              </tr>
+            ))}
+            {estudiantes.length === 0 && (
+              <tr><td colSpan="6">No hay estudiantes registrados.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
     </>
   );
 }

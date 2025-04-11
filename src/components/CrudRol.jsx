@@ -84,56 +84,56 @@ function CrudRol() {
     <>
       {mensaje && <div className="mensaje-exito">{mensaje}</div>}
 
+    
 
+    <div className="rol-container">
+      <h2>{editandoRol ? "Editar Rol" : "Registrar Rol"}</h2>
 
-      <div className="rol-container">
-        <h2>{editandoRol ? "Editar Rol" : "Registrar Rol"}</h2>
-
-        <div className="rol-form">
-          <input
-            type="text"
-            placeholder="Nombre del rol"
-            value={editandoRol ? editandoRol.nombre : nombre}
-            onChange={handleInputChange}
-          />
-          <button onClick={editandoRol ? actualizarRol : crearRol}>
-            {editandoRol ? "Actualizar" : "Registrar"}
-          </button>
-        </div>
-
-        <div className="rol-table-container">
-          <table className="rol-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {roles.map((rol) => (
-                <tr key={rol.id}>
-                  <td>{rol.id}</td>
-                  <td>{rol.nombre}</td>
-                  <td>
-                    <button className="edit-btn" onClick={() => setEditandoRol(rol)}>
-                      Editar
-                    </button>
-                    <button className="delete-btn" onClick={() => eliminarRol(rol.id)}>
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {roles.length === 0 && (
-                <tr>
-                  <td colSpan="3">No hay roles registrados.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+      <div className="rol-form">
+        <input
+          type="text"
+          placeholder="Nombre del rol"
+          value={editandoRol ? editandoRol.nombre : nombre}
+          onChange={handleInputChange}
+        />
+        <button onClick={editandoRol ? actualizarRol : crearRol}>
+          {editandoRol ? "Actualizar" : "Registrar"}
+        </button>
       </div>
+
+      <div className="rol-table-container">
+        <table className="rol-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roles.map((rol) => (
+              <tr key={rol.id}>
+                <td>{rol.id}</td>
+                <td>{rol.nombre}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => setEditandoRol(rol)}>
+                    Editar
+                  </button>
+                  <button className="delete-btn" onClick={() => eliminarRol(rol.id)}>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {roles.length === 0 && (
+              <tr>
+                <td colSpan="3">No hay roles registrados.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
     </>
   );
 }
