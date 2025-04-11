@@ -1,0 +1,117 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./CrudRol.css";
+
+function CrudRol() {
+  const [nombre, setNombre] = useState("");
+  const [roles, setRoles] = useState([]);
+  const [editandoRol, setEditandoRol] = useState(null);
+
+  useEffect(() => {
+    obtenerRoles();
+  }, []);
+
+  const obtenerRoles = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/obtener-roles");
+      setRoles(response.data.roles);
+    } catch (error) {
+      console.error("Error al obtener roles:", error);
+    }
+  };
+
+  const crearRol = async () => {
+    try {
+      await axios.post("http://localhost:8000/api/registrar-rol", {
+        nombre,
+        permisos: [],
+      });
+      setNombre("");
+      obtenerRoles();
+    } catch (error) {
+      console.error("Error al crear rol:", error);
+    }
+  };
+
+  const actualizarRol = async () => {
+    try {
+      await axios.put(`http://localhost:8000/api/actualizar-rol/${editandoRol.id}`, {
+        nombre: editandoRol.nombre,
+        permisos: editandoRol.permisos || [],
+      });
+      setEditandoRol(null);
+      obtenerRoles();
+    } catch (error) {
+      console.error("Error al actualizar rol:", error);
+    }
+  };
+
+  const eliminarRol = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8000/api/eliminar-rol/${id}`);
+      obtenerRoles();
+    } catch (error) {
+      console.error("Error al eliminar rol:", error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    editandoRol
+      ? setEditandoRol({ ...editandoRol, nombre: value })
+      : setNombre(value);
+  };
+
+  return (
+    <div className="rol-container">
+      <h2>{editandoRol ? "Editar Rol" : "Registrar Rol"}</h2>
+
+      <div className="rol-form">
+        <input
+          type="text"
+          placeholder="Nombre del rol"
+          value={editandoRol ? editandoRol.nombre : nombre}
+          onChange={handleInputChange}
+        />
+        <button onClick={editandoRol ? actualizarRol : crearRol}>
+          {editandoRol ? "Actualizar" : "Registrar"}
+        </button>
+      </div>
+
+      <div className="rol-table-container">
+        <table className="rol-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {roles.map((rol) => (
+              <tr key={rol.id}>
+                <td>{rol.id}</td>
+                <td>{rol.nombre}</td>
+                <td>
+                  <button className="edit-btn" onClick={() => setEditandoRol(rol)}>
+                    Editar
+                  </button>
+                  <button className="delete-btn" onClick={() => eliminarRol(rol.id)}>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {roles.length === 0 && (
+              <tr>
+                <td colSpan="3">No hay roles registrados.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default CrudRol;

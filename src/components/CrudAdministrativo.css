@@ -1,0 +1,92 @@
+.administrativo-container {
+    padding: 20px;
+    background-color: #f5f9fa;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .administrativo-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .administrativo-form input,
+  .administrativo-form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 200px;
+    flex: 1;
+  }
+  
+  .administrativo-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .administrativo-table-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .administrativo-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+  
+  .administrativo-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #e9ecef;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #dee2e6;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .administrativo-table td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+    white-space: nowrap;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 12px;
+    margin-right: 6px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+  }
+  

@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Docente from "./components/Docente";
+import Administrativo from "./components/Administrativo";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/Docente" element={<ProtectedRoute allowedRoles={["2"]}> <Docente /></ProtectedRoute>} />
+        <Route path="/Administrativo" element={<ProtectedRoute allowedRoles={["1"]}> <Administrativo /></ProtectedRoute>} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 

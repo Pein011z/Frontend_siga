@@ -1,0 +1,218 @@
+.acudiente-container {
+  padding: 20px;
+  background-color: #f5f9fa;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.acudiente-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.acudiente-form input,
+.acudiente-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 200px;
+  flex: 1;
+}
+
+.acudiente-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.acudiente-table-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.acudiente-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.acudiente-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #e9ecef;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #dee2e6;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.acudiente-table td {
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.acudiente-container {
+  padding: 20px;
+  background-color: #f5f9fa;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.acudiente-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.acudiente-form input,
+.acudiente-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  min-width: 200px;
+  flex: 1;
+}
+
+.acudiente-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.acudiente-table-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.acudiente-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.acudiente-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #e9ecef;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #dee2e6;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.acudiente-table td {
+  padding: 10px;
+  border-bottom: 1px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: black;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.mensaje-exito {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  animation: fadeIn 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.mensaje-exito.oculto {
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+ 
