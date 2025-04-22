@@ -94,3 +94,18 @@
     background-color: #dc3545;
   }
   
+  .estudiante-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .estudiante-filtros input,
+  .estudiante-filtros select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-width: 180px;
+    flex: 1;
+  }
